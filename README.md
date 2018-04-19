@@ -52,7 +52,7 @@ To learn more about how detailed configure the module, see our [wiki](https://gi
 
 # Business/Technical Support
 
-Please, send a e-mail to [suporte@pagarme.com](mailto:suporte@pagarme.com)
+Please, send a e-mail to [suporte@pagar.me](mailto:suporte@pagar.me)
 
 # How can I contribute?
 Please, refer to [CONTRIBUTING](CONTRIBUTING.md)
