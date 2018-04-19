@@ -1,0 +1,18 @@
+<?php
+/**
+ * Class billet
+ *
+ * @author      PagarMe Modules Team <modules@pagar.me>
+ * @copyright   2018 PagarMe (http://pagar.me)
+ * @license     http://pagar.me Copyright
+ *
+ * @link        http://pagar.me
+ */
+?>
+<?php if ($this->getBilletUrl() && $this->getInfo()->getOrder()->getState() == 'pending_payment'): ?>
+    <span><?php echo __($this->getTitle()) ?></span>
+    <hr />
+    <a class="action tocart primary" href="<?php echo $this->getBilletUrl() ?>" target="_blank"><?php echo __('Print Billet') ?></a>
+<?php else: ?>
+	<span><?php echo __($this->getTitle()) ?></span>
+<?php endif ?>

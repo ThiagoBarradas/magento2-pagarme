@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * @author      PagarMe Modules Team <modules@pagar.me>
+ * @copyright   2018 PagarMe (http://pagar.me)
+ * @license     http://pagar.me  Copyright
+ *
+ * @link        http://pagar.me
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block  class="PagarMe\PagarMe\Block\Payment\Billet"
+                    name="checkout.pagarme.billet.link"
+                    template="payment/billet.phtml"
+                    before="order.success.additional.info"
+                    cacheable="false" />
+        </referenceContainer>
+    </body>
+</page>

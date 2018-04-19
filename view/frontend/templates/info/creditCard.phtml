@@ -1,0 +1,22 @@
+<?php
+/**
+ * Class billet
+ *
+ * @author      PagarMe Modules Team <modules@pagar.me>
+ * @copyright   2018 PagarMe (http://pagar.me)
+ * @license     http://pagar.me Copyright
+ *
+ * @link        http://pagar.me
+ */
+
+?>
+<?php if ($this->getCcType()): ?>
+    <span><?php echo __($this->getTitle()); ?></span>
+    <br/>
+    <br/>
+    <span><b><?php echo __('Brand'); ?>: </b><?php echo $this->getCcBrand(); ?></span>
+    <br/>
+    <span><b><?php echo __('Number'); ?>: </b><?php echo $this->getCardLast4(); ?></span>
+    <br/>
+    <span><b><?php echo __('Installments'); ?>: </b><?php echo $this->getInstallments(); ?></span>
+<?php endif ?>

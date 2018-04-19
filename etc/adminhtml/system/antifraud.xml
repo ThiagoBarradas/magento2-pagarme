@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author      PagarMe Modules Team <modules@pagar.me>
+ * @copyright   2018 PagarMe (http://pagar.me)
+ * @license     http://pagar.me  Copyright
+ *
+ * @link        http://pagar.me
+ *
+ */
+-->
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+    <section id="pagarme_pagarme_antifraud" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>PagarMe AntiFraud</label>
+        <tab>pagarme_pagarme</tab>
+        <resource>PagarMe_PagarMe::config</resource>
+
+        <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>General</label>
+            <field id="active" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                <label>Enabled</label>
+                <comment />
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+        </group>
+
+        <include path="PagarMe_PagarMe::system/antifraud/fingerprint.xml"/>
+        <include path="PagarMe_PagarMe::system/antifraud/options.xml"/>
+        <include path="PagarMe_PagarMe::system/antifraud/mdd.xml"/>
+    </section>
+</include>

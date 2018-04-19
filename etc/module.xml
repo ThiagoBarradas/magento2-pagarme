@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author      PagarMe Modules Team <modules@pagar.me>
+ * @copyright   2018 PagarMe (http://pagar.me)
+ * @license     http://pagar.me  Copyright
+ *
+ * @link        http://pagar.me
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="PagarMe_PagarMe" setup_version="1.2.17">
+        <sequence>
+            <module name="Magento_Sales" />
+            <module name="Magento_Payment" />
+            <module name="Magento_Checkout"/>
+            <module name="Magento_Directory" />
+            <module name="Magento_Config" />
+        </sequence>
+    </module>
+</config>

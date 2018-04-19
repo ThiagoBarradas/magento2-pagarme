@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="payment_method_assign_data_pagarme_creditcard">
+        <observer name="pagarme_payment_method_assign_data_pagarme_creditcard" instance="PagarMe\PagarMe\Observer\CreditCardDataAssignObserver" />
+    </event>
+    <event name="payment_method_assign_data_pagarme_billet_creditcard">
+        <observer name="pagarme_payment_method_assign_data_pagarme_billet_creditcard" instance="PagarMe\PagarMe\Observer\BilletCreditCardDataAssignObserver" />
+    </event>
+    <event name="sales_order_place_before">
+        <observer name="pagarme_payment_sales_order_place_before_pagarme_creditcard" instance="PagarMe\PagarMe\Observer\CreditCardOrderPlaceBeforeObserver" />
+    </event>
+    <event name="payment_method_assign_data_pagarme_two_creditcard">
+        <observer name="pagarme_payment_method_assign_data_pagarme_two_creditcard" instance="PagarMe\PagarMe\Observer\TwoCreditCardDataAssignObserver" />
+    </event>
+    <event name="sales_order_place_after">
+       <observer name="pagarme_payment_method_pagarme_credit_card_after_place_order" instance="PagarMe\PagarMe\Observer\SalesOrderPlaceAfter" />
+    </event>
+    <event name="admin_system_config_changed_section_payment">
+        <observer name="PagarMe_DataValidateAdmin" instance="PagarMe\PagarMe\Observer\DataValidateAdmin" />
+    </event>
+</config>

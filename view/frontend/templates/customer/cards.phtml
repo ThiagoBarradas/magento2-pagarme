@@ -1,0 +1,44 @@
+<?php
+/**
+ * Phtml List Cards
+ *
+ * @author      PagarMe Modules Team <modules@pagar.me>
+ * @copyright   2018 PagarMe (http://pagar.me)
+ * @license     http://pagar.me Copyright
+ *
+ * @link        http://pagar.me
+ */
+
+$i = 0;
+?>
+
+<div>
+	<table class="table">
+
+		<thead>
+		  <tr>
+		    <th><?php echo __('Id') ?></th>
+		    <th><?php echo __('Last Four Numbers') ?></th>
+		    <th><?php echo __('Brand') ?></th>
+		    <th><?php echo __('Created At') ?></th>
+		    <th><?php echo __('Remove') ?></th>
+		  </tr>
+		</thead>
+
+		<tbody>
+			<?php foreach ($block->getCardsList() as $item): ?>
+				<?php $i++; ?>
+				<?php $url = $this->getBaseUrl() . 'pagarme/customer/remove/id/'. $item->getId() ?>
+				<tr>
+					<td><?php echo $i ?></td>
+					<td><?php echo __('****.****.****.') ?><?php echo $item->getLastFourNumbers() ?></td>
+					<td><?php echo $item->getBrand() ?></td>
+					<td><?php echo $item->getCreatedAt() ?></td>
+					<td><button onclick="location.href = '<?php echo $url ?>';" id="remove"><?php echo __('Remove') ?></button></td>
+				</tr>
+			
+			<?php endforeach; ?>
+		</tbody>
+	</table>
+</div>
+

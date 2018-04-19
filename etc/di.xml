@@ -1,0 +1,422 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author      PagarMe Modules Team <modules@pagar.me>
+ * @copyright   2018 PagarMe (http://pagar.me)
+ * @license     http://pagar.me Copyright
+ *
+ * @link        http://pagar.me
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="PagarMe\PagarMe\Api\InstallmentsManagementInterface" type="PagarMe\PagarMe\Model\InstallmentsManagement" />
+    <preference for="PagarMe\PagarMe\Api\Data\InstallmentInterface" type="PagarMe\PagarMe\Model\Installment" />
+    <preference for="PagarMe\PagarMe\Api\CreditCardRequestDataProviderInterface" type="PagarMe\PagarMe\Gateway\Transaction\CreditCard\ResourceGateway\Create\RequestDataProvider" />
+    <preference for="PagarMe\PagarMe\Api\TwoCreditCardRequestDataProviderInterface" type="PagarMe\PagarMe\Gateway\Transaction\TwoCreditCard\ResourceGateway\Create\RequestDataProvider" />
+    <preference for="PagarMe\PagarMe\Api\BilletRequestDataProviderInterface" type="PagarMe\PagarMe\Gateway\Transaction\Billet\ResourceGateway\Create\RequestDataProvider" />
+    <preference for="PagarMe\PagarMe\Api\CartItemRequestDataProviderInterface" type="PagarMe\PagarMe\Gateway\Transaction\Base\ResourceGateway\CartItemRequestDataProvider" />
+    <preference for="PagarMe\PagarMe\Model\Installments\Config\ConfigInterface" type="PagarMe\PagarMe\Model\Installments\Config\Config" />
+    <preference for="PagarMe\PagarMe\Model\Installments\Config\ConfigByBrandInterface" type="PagarMe\PagarMe\Model\Installments\Config\ConfigByBrand" />
+    <preference for="PagarMe\PagarMe\Gateway\Transaction\CreditCard\Config\ConfigInterface" type="PagarMe\PagarMe\Gateway\Transaction\CreditCard\Config\Config" />
+    <preference for="PagarMe\PagarMe\Gateway\Transaction\TwoCreditCard\Config\ConfigInterface" type="PagarMe\PagarMe\Gateway\Transaction\TwoCreditCard\Config\Config" />
+    <preference for="PagarMe\PagarMe\Gateway\Transaction\Billet\Config\ConfigInterface" type="PagarMe\PagarMe\Gateway\Transaction\Billet\Config\Config" />
+    <preference for="PagarMe\PagarMe\Gateway\Transaction\BilletCreditCard\Config\ConfigInterface" type="PagarMe\PagarMe\Gateway\Transaction\BilletCreditCard\Config\Config" />
+    <preference for="PagarMe\PagarMe\Api\BilletCreditCardRequestDataProviderInterface" type="PagarMe\PagarMe\Gateway\Transaction\BilletCreditCard\ResourceGateway\Create\RequestDataProvider" />
+    <preference for="PagarMe\PagarMe\Gateway\Transaction\Base\Config\ConfigInterface" type="PagarMe\PagarMe\Gateway\Transaction\Base\Config\Config" />
+    <preference for="PagarMe\PagarMe\Helper\CustomerAddressInterface" type="PagarMe\PagarMe\Helper\CustomerAddress" />
+    <preference for="PagarMe\PagarMe\Api\WebhookManagementInterface" type="PagarMe\PagarMe\Model\WebhookManagement"/>
+    <preference for="PagarMe\PagarMe\Api\InstallmentsByBrandManagementInterface" type="PagarMe\PagarMe\Model\InstallmentsByBrandManagement"/>
+    <preference for="PagarMe\PagarMe\Api\InstallmentsByBrandAndAmountManagementInterface" type="PagarMe\PagarMe\Model\InstallmentsByBrandAndAmountManagement"/>
+    <preference for="PagarMe\PagarMe\Api\CustomerCreateManagementInterface" type="PagarMe\PagarMe\Model\CustomerCreateManagement" />
+
+    <type name="PagarMe\PagarMe\Model\InstallmentsByBrandManagement">
+        <arguments>
+            <argument name="builder" xsi:type="object">PagarMe\PagarMe\Model\Installments\BuilderByBrand</argument>
+        </arguments>
+    </type>
+
+    <type name="PagarMe\PagarMe\Model\InstallmentsByBrandAndAmountManagement">
+        <arguments>
+            <argument name="builder" xsi:type="object">PagarMe\PagarMe\Model\Installments\BuilderByBrandAndAmount</argument>
+        </arguments>
+    </type>
+
+    <!-- Charges PagarMe -->
+    <preference for="PagarMe\PagarMe\Api\ChargesRepositoryInterface" type="PagarMe\PagarMe\Model\ChargesRepository"/>
+    <preference for="PagarMe\PagarMe\Api\Data\ChargesInterface" type="PagarMe\PagarMe\Model\Charges"/>
+    <preference for="PagarMe\PagarMe\Api\Data\ChargesSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <virtualType name="PagarMe\PagarMe\Model\ResourceModel\Charges\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">pagarme_pagarme_charges</argument>
+            <argument name="resourceModel" xsi:type="string">PagarMe\PagarMe\Model\ResourceModel\Charges\Collection</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="pagarme_pagarme_charges_grid_data_source" xsi:type="string">PagarMe\PagarMe\Model\ResourceModel\Charges\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Final Charges PagarMe -->
+
+    <!-- Cards PagarMe -->
+    <preference for="PagarMe\PagarMe\Api\CardsRepositoryInterface" type="PagarMe\PagarMe\Model\CardsRepository"/>
+    <preference for="PagarMe\PagarMe\Api\Data\CardsInterface" type="PagarMe\PagarMe\Model\Cards"/>
+    <preference for="PagarMe\PagarMe\Api\Data\CardsSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <virtualType name="PagarMe\PagarMe\Model\ResourceModel\Cards\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">pagarme_pagarme_cards</argument>
+            <argument name="resourceModel" xsi:type="string">PagarMe\PagarMe\Model\ResourceModel\Cards\Collection</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="pagarme_pagarme_cards_grid_data_source" xsi:type="string">PagarMe\PagarMe\Model\ResourceModel\Cards\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Final Cards PagarMe -->
+
+    <type name="PagarMe\PagarMe\Model\InstallmentsManagement">
+        <arguments>
+            <argument name="builder" xsi:type="object">PagarMe\PagarMe\Model\Installments\Builder</argument>
+        </arguments>
+    </type>
+
+    <type name="PagarMe\PagarMe\Model\InstallmentsManagementByBrand">
+        <arguments>
+            <argument name="builder" xsi:type="object">PagarMe\PagarMe\Model\Installments\BuilderByBrand</argument>
+        </arguments>
+    </type>
+
+    <type name="PagarMe\PagarMe\Model\Installments\Builder">
+        <arguments>
+            <argument name="config" xsi:type="object">PagarMeCreditCardInstallment</argument>
+        </arguments>
+    </type>
+
+    <type name="PagarMe\PagarMe\Model\Installments\BuilderByBrand">
+        <arguments>
+            <argument name="config" xsi:type="object">PagarMeCreditCardInstallmentByBrand</argument>
+        </arguments>
+    </type>
+
+    <type name="PagarMe\PagarMe\Model\Installments\BuilderByBrandAndAmount">
+        <arguments>
+            <argument name="config" xsi:type="object">PagarMeCreditCardInstallmentByBrandAndAmount</argument>
+        </arguments>
+    </type>
+
+    <!-- Billet -->
+    <virtualType name="PagarMeBilletRemoteMethodAdapter" type="Magento\Payment\Model\Method\Adapter">
+        <arguments>
+            <argument name="code" xsi:type="const">PagarMe\PagarMe\Model\Ui\Billet\ConfigProvider::CODE</argument>
+            <argument name="valueHandlerPool" xsi:type="object">PagarMeBilletValueHandlerPool</argument>
+            <argument name="commandPool" xsi:type="object">PagarMeBilletCommandPool</argument>
+            <argument name="formBlockType" xsi:type="string">Magento\Payment\Block\Form</argument>
+            <argument name="infoBlockType" xsi:type="string">PagarMe\PagarMe\Block\Payment\Info\Billet</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeBilletValueHandlerPool" type="Magento\Payment\Gateway\Config\ValueHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="string">PagarMeBilletConfigValueHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeBilletConfigValueHandler" type="Magento\Payment\Gateway\Config\ConfigValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">PagarMeBilletConfig</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeBilletConfig" type="Magento\Payment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="const">PagarMe\PagarMe\Model\Ui\Billet\ConfigProvider::CODE</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeBilletCommandPool" type="Magento\Payment\Gateway\Command\CommandPool">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="initialize" xsi:type="string">PagarMe\PagarMe\Gateway\Transaction\Base\Command\InitializeCommand</item>
+                <item name="authorize" xsi:type="string">PagarMeBilletAuthorizeCommand</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeBilletAuthorizeCommand" type="PagarMe\PagarMe\Gateway\Transaction\Billet\Command\AuthorizeCommand">
+        <arguments>
+            <argument name="requestBuilder" xsi:type="object">PagarMe\PagarMe\Gateway\Transaction\Billet\ResourceGateway\Create\RequestBuilder</argument>
+            <argument name="responseHandler" xsi:type="object">PagarMeBilletAuthorizeCommandResponseHandlerPool</argument>
+            <argument name="validator" xsi:type="object">PagarMe\PagarMe\Gateway\Transaction\Billet\ResourceGateway\Create\Response\Validator</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeBilletAuthorizeCommandResponseHandlerPool" type="Magento\Payment\Gateway\Response\HandlerChain">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="general" xsi:type="string">PagarMe\PagarMe\Gateway\Transaction\Billet\ResourceGateway\Create\Response\GeneralHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Two CreditCards -->
+
+    <virtualType name="PagarMeTwoCreditCardRemoteMethodAdapter" type="Magento\Payment\Model\Method\Adapter">
+        <arguments>
+            <argument name="code" xsi:type="const">PagarMe\PagarMe\Model\Ui\TwoCreditCard\ConfigProvider::CODE</argument>
+            <argument name="valueHandlerPool" xsi:type="object">PagarMeTwoCreditCardValueHandlerPool</argument>
+            <argument name="commandPool" xsi:type="object">PagarMeTwoCreditCardCommandPool</argument>
+            <argument name="formBlockType" xsi:type="string">Magento\Payment\Block\Form</argument>
+            <argument name="infoBlockType" xsi:type="string">PagarMe\PagarMe\Block\Payment\Info\TwoCreditCard</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeTwoCreditCardValueHandlerPool" type="Magento\Payment\Gateway\Config\ValueHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="string">PagarMeTwoCreditCardConfigValueHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeTwoCreditCardConfigValueHandler" type="Magento\Payment\Gateway\Config\ConfigValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">PagarMeTwoCreditCardConfig</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeTwoCreditCardConfig" type="Magento\Payment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="const">PagarMe\PagarMe\Model\Ui\TwoCreditCard\ConfigProvider::CODE</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeTwoCreditCardCommandPool" type="Magento\Payment\Gateway\Command\CommandPool">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="initialize" xsi:type="string">PagarMe\PagarMe\Gateway\Transaction\Base\Command\InitializeCommand</item>
+                <item name="authorize" xsi:type="string">PagarMeTwoCreditCardAuthorizeCommand</item>
+                <item name="capture" xsi:type="string">PagarMeCreditCardCaptureCommand</item>
+                <item name="refund" xsi:type="string">PagarMeCreditCardRefundCommand</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeTwoCreditCardAuthorizeCommand" type="PagarMe\PagarMe\Gateway\Transaction\TwoCreditCard\Command\AuthorizeCommand">
+        <arguments>
+            <argument name="requestBuilder" xsi:type="object">PagarMe\PagarMe\Gateway\Transaction\TwoCreditCard\ResourceGateway\Create\RequestBuilder</argument>
+            <argument name="responseHandler" xsi:type="object">PagarMeTwoCreditCardAuthorizeCommandResponseHandlerPool</argument>
+            <argument name="validator" xsi:type="object">PagarMe\PagarMe\Gateway\Transaction\TwoCreditCard\ResourceGateway\Create\Response\Validator</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeTwoCreditCardAuthorizeCommandResponseHandlerPool" type="Magento\Payment\Gateway\Response\HandlerChain">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="general" xsi:type="string">PagarMe\PagarMe\Gateway\Transaction\TwoCreditCard\ResourceGateway\Create\Response\GeneralHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeTwoCreditCardInstallment" type="PagarMe\PagarMe\Model\Installments\Config\Config">
+        <arguments>
+            <argument name="paymentMethodCode" xsi:type="const">PagarMe\PagarMe\Model\Ui\TwoCreditCard\ConfigProvider::CODE</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeTwoCreditCardInstallmentByBrand" type="PagarMe\PagarMe\Model\Installments\Config\ConfigByBrand">
+        <arguments>
+            <argument name="paymentMethodCode" xsi:type="const">PagarMe\PagarMe\Model\Ui\TwoCreditCard\ConfigProvider::CODE</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeTwoCreditCardInstallmentByBrandAndAmount" type="PagarMe\PagarMe\Model\Installments\Config\ConfigByBrand">
+        <arguments>
+            <argument name="paymentMethodCode" xsi:type="const">PagarMe\PagarMe\Model\Ui\TwoCreditCard\ConfigProvider::CODE</argument>
+        </arguments>
+    </virtualType>
+
+
+    <!-- CreditCard -->
+
+    <virtualType name="PagarMeCreditCardsRemoteMethodAdapter" type="Magento\Payment\Model\Method\Adapter">
+        <arguments>
+            <argument name="code" xsi:type="const">PagarMe\PagarMe\Model\Ui\CreditCard\ConfigProvider::CODE</argument>
+            <argument name="valueHandlerPool" xsi:type="object">PagarMeCreditCardValueHandlerPool</argument>
+            <argument name="commandPool" xsi:type="object">PagarMeCreditCardCommandPool</argument>
+            <argument name="formBlockType" xsi:type="string">Magento\Payment\Block\Form</argument>
+            <argument name="infoBlockType" xsi:type="string">PagarMe\PagarMe\Block\Payment\Info\CreditCard</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeCreditCardValueHandlerPool" type="Magento\Payment\Gateway\Config\ValueHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="string">PagarMeCreditCardConfigValueHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeCreditCardConfigValueHandler" type="Magento\Payment\Gateway\Config\ConfigValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">PagarMeCreditCardConfig</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeCreditCardConfig" type="Magento\Payment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="const">PagarMe\PagarMe\Model\Ui\CreditCard\ConfigProvider::CODE</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeCreditCardCommandPool" type="Magento\Payment\Gateway\Command\CommandPool">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="initialize" xsi:type="string">PagarMe\PagarMe\Gateway\Transaction\Base\Command\InitializeCommand</item>
+                <item name="authorize" xsi:type="string">PagarMeCreditCardAuthorizeCommand</item>
+                <item name="capture" xsi:type="string">PagarMeCreditCardCaptureCommand</item>
+                <item name="refund" xsi:type="string">PagarMeCreditCardRefundCommand</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeCreditCardAuthorizeCommand" type="PagarMe\PagarMe\Gateway\Transaction\CreditCard\Command\AuthorizeCommand">
+        <arguments>
+            <argument name="requestBuilder" xsi:type="object">PagarMe\PagarMe\Gateway\Transaction\CreditCard\ResourceGateway\Create\RequestBuilder</argument>
+            <argument name="responseHandler" xsi:type="object">PagarMeCreditCardAuthorizeCommandResponseHandlerPool</argument>
+            <argument name="validator" xsi:type="object">PagarMe\PagarMe\Gateway\Transaction\CreditCard\ResourceGateway\Create\Response\Validator</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeCreditCardAuthorizeCommandResponseHandlerPool" type="Magento\Payment\Gateway\Response\HandlerChain">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="general" xsi:type="string">PagarMe\PagarMe\Gateway\Transaction\CreditCard\ResourceGateway\Create\Response\GeneralHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeCreditCardInstallment" type="PagarMe\PagarMe\Model\Installments\Config\Config">
+        <arguments>
+            <argument name="paymentMethodCode" xsi:type="const">PagarMe\PagarMe\Model\Ui\CreditCard\ConfigProvider::CODE</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeCreditCardInstallmentByBrand" type="PagarMe\PagarMe\Model\Installments\Config\ConfigByBrand">
+        <arguments>
+            <argument name="paymentMethodCode" xsi:type="const">PagarMe\PagarMe\Model\Ui\CreditCard\ConfigProvider::CODE</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeCreditCardInstallmentByBrandAndAmount" type="PagarMe\PagarMe\Model\Installments\Config\ConfigByBrand">
+        <arguments>
+            <argument name="paymentMethodCode" xsi:type="const">PagarMe\PagarMe\Model\Ui\CreditCard\ConfigProvider::CODE</argument>
+        </arguments>
+    </virtualType>
+
+
+    <!-- Billet and CreditCard -->
+
+    <virtualType name="PagarMeBilletCreditCardsRemoteMethodAdapter" type="Magento\Payment\Model\Method\Adapter">
+        <arguments>
+            <argument name="code" xsi:type="const">PagarMe\PagarMe\Model\Ui\BilletCreditCard\ConfigProvider::CODE</argument>
+            <argument name="valueHandlerPool" xsi:type="object">PagarMeBilletCreditCardValueHandlerPool</argument>
+            <argument name="commandPool" xsi:type="object">PagarMeBilletCreditCardCommandPool</argument>
+            <argument name="formBlockType" xsi:type="string">Magento\Payment\Block\Form</argument>
+            <argument name="infoBlockType" xsi:type="string">PagarMe\PagarMe\Block\Payment\Info\BilletCreditCard</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeBilletCreditCardValueHandlerPool" type="Magento\Payment\Gateway\Config\ValueHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="string">PagarMeBilletCreditCardConfigValueHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeBilletCreditCardConfigValueHandler" type="Magento\Payment\Gateway\Config\ConfigValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">PagarMeBilletCreditCardConfig</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeBilletCreditCardConfig" type="Magento\Payment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="const">PagarMe\PagarMe\Model\Ui\BilletCreditCard\ConfigProvider::CODE</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeBilletCreditCardCommandPool" type="Magento\Payment\Gateway\Command\CommandPool">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="initialize" xsi:type="string">PagarMe\PagarMe\Gateway\Transaction\Base\Command\InitializeCommand</item>
+                <item name="authorize" xsi:type="string">PagarMeBilletCreditCardAuthorizeCommand</item>
+                <item name="capture" xsi:type="string">PagarMeCreditCardCaptureCommand</item>
+                <item name="refund" xsi:type="string">PagarMeCreditCardRefundCommand</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeBilletCreditCardAuthorizeCommand" type="PagarMe\PagarMe\Gateway\Transaction\BilletCreditCard\Command\AuthorizeCommand">
+        <arguments>
+            <argument name="requestBuilder" xsi:type="object">PagarMe\PagarMe\Gateway\Transaction\BilletCreditCard\ResourceGateway\Create\RequestBuilder</argument>
+            <argument name="responseHandler" xsi:type="object">PagarMeBilletCreditCardAuthorizeCommandResponseHandlerPool</argument>
+            <argument name="validator" xsi:type="object">PagarMe\PagarMe\Gateway\Transaction\BilletCreditCard\ResourceGateway\Create\Response\Validator</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeBilletCreditCardAuthorizeCommandResponseHandlerPool" type="Magento\Payment\Gateway\Response\HandlerChain">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="general" xsi:type="string">PagarMe\PagarMe\Gateway\Transaction\BilletCreditCard\ResourceGateway\Create\Response\GeneralHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+
+    <!-- Capture -->
+    <virtualType name="PagarMeCreditCardCaptureCommand" type="PagarMe\PagarMe\Gateway\Transaction\CreditCard\Command\CaptureCommand">
+        <arguments>
+            <argument name="requestBuilder" xsi:type="object">PagarMe\PagarMe\Gateway\Transaction\CreditCard\ResourceGateway\Capture\RequestBuilder</argument>
+            <argument name="responseHandler" xsi:type="object">PagarMeCreditCardCaptureCommandResponseHandlerPool</argument>
+            <argument name="validator" xsi:type="object">PagarMe\PagarMe\Gateway\Transaction\CreditCard\ResourceGateway\Capture\Response\Validator</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeCreditCardCaptureCommandResponseHandlerPool" type="Magento\Payment\Gateway\Response\HandlerChain">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="general" xsi:type="string">PagarMe\PagarMe\Gateway\Transaction\CreditCard\ResourceGateway\Capture\Response\GeneralHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Refound -->
+
+    <virtualType name="PagarMeCreditCardRefundCommand" type="PagarMe\PagarMe\Gateway\Transaction\CreditCard\Command\RefundCommand">
+        <arguments>
+            <argument name="requestBuilder" xsi:type="object">PagarMe\PagarMe\Gateway\Transaction\CreditCard\ResourceGateway\Refund\RequestBuilder</argument>
+            <argument name="responseHandler" xsi:type="object">PagarMeCreditCardRefundCommandResponseHandlerPool</argument>
+            <argument name="validator" xsi:type="object">PagarMe\PagarMe\Gateway\Transaction\CreditCard\ResourceGateway\Refund\Response\Validator</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeCreditCardRefundCommandResponseHandlerPool" type="Magento\Payment\Gateway\Response\HandlerChain">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="general" xsi:type="string">PagarMe\PagarMe\Gateway\Transaction\CreditCard\ResourceGateway\Refund\Response\GeneralHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+
+</config>

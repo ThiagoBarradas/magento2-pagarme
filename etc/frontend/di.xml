@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author      PagarMe Modules Team <modules@pagar.me>
+ * @copyright   2018 PagarMe (http://pagar.me)
+ * @license     http://pagar.me Copyright
+ *
+ * @link        http://pagar.me
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="PagarMeCreditCardUiConfigProvider" type="Magento\Payment\Model\CcGenericConfigProvider">
+        <arguments>
+            <argument name="methodCodes" xsi:type="array">
+                <item name="pagarme_creditcard" xsi:type="const">PagarMe\PagarMe\Model\Ui\CreditCard\ConfigProvider::CODE</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeTwoCreditCardUiConfigProvider" type="Magento\Payment\Model\CcGenericConfigProvider">
+        <arguments>
+            <argument name="methodCodes" xsi:type="array">
+                <item name="pagarme_two_creditcard" xsi:type="const">PagarMe\PagarMe\Model\Ui\TwoCreditCard\ConfigProvider::CODE</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeBilletCreditCardUiConfigProvider" type="Magento\Payment\Model\CcGenericConfigProvider">
+        <arguments>
+            <argument name="methodCodes" xsi:type="array">
+                <item name="pagarme_billet_creditcard" xsi:type="const">PagarMe\PagarMe\Model\Ui\BilletCreditCard\ConfigProvider::CODE</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PagarMeCreditCardInstallmentsUiConfigProvider" type="PagarMe\PagarMe\Model\Ui\CreditCard\InstallmentsConfigProvider">
+        <arguments>
+            <argument name="config" xsi:type="object">PagarMeCreditCardInstallment</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Checkout\Model\CompositeConfigProvider">
+        <arguments>
+            <argument name="configProviders" xsi:type="array">
+                <item name="pagarme_creditcard_config_provider" xsi:type="object">PagarMeCreditCardUiConfigProvider</item>
+                <item name="pagarme_creditcard_config_provider_unique" xsi:type="object">PagarMe\PagarMe\Model\Ui\CreditCard\ConfigProvider</item>
+
+                <item name="pagarme_billet_creditcard_config_provider" xsi:type="object">PagarMeBilletCreditCardUiConfigProvider</item>
+                <item name="pagarme_billet_creditcard_config_provider_unique" xsi:type="object">PagarMe\PagarMe\Model\Ui\BilletCreditCard\ConfigProvider</item>
+
+                <item name="pagarme_two_creditcard_config_provider" xsi:type="object">PagarMeTwoCreditCardUiConfigProvider</item>
+                <item name="pagarme_two_creditcard_config_provider_unique" xsi:type="object">PagarMe\PagarMe\Model\Ui\TwoCreditCard\ConfigProvider</item>
+
+                <item name="generic_config_provider" xsi:type="object">Magento\Payment\Model\CcGenericConfigProvider</item>
+                <item name="installments_creditcard" xsi:type="object">PagarMeCreditCardInstallmentsUiConfigProvider</item>
+
+                <item name="pagarme_billet_config_provider" xsi:type="object">PagarMe\PagarMe\Model\Ui\Billet\ConfigProvider</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

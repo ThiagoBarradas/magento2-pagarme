@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="PagarMe::top_level" module="PagarMe_PagarMe" resource="Magento_Backend::content" sortOrder="9999" title="PagarMe"/>
+		<add action="pagarme_pagarme/charges/index" id="PagarMe::pagarme_pagarme_charges" module="PagarMe_PagarMe" parent="PagarMe::top_level" resource="Magento_Backend::content" sortOrder="9999" title="Charges PagarMe"/>
+		<add action="pagarme_pagarme/cards/index" id="PagarMe::pagarme_pagarme_cards" module="PagarMe_PagarMe" parent="PagarMe::top_level" resource="Magento_Backend::content" sortOrder="10" title="Cards PagarMe"/>
+		<add action="adminhtml/system_config/edit/section/payment" id="PagarMe::pagarme_pagarme_payment_methods" module="PagarMe_PagarMe" parent="PagarMe::top_level" resource="Magento_Config::config" sortOrder="1" title="Payment Methods"/>
+	</menu>
+</config>
