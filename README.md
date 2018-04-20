@@ -1,7 +1,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2213fc1ce8f14e7bb0861f232a310233)](https://www.codacy.com/app/pagarme/magento2?utm_source=github.com&utm_medium=referral&utm_content=pagarme/magento2&utm_campaign=badger)
 [![Maintainability](https://api.codeclimate.com/v1/badges/e279af4b87b47e56723a/maintainability)](https://codeclimate.com/github/pagarme/magento2/maintainability)
-[![Latest Stable Version](https://poser.pugx.org/pagarme/pagarme-magento2-module/v/stable)](https://packagist.org/packages/pagarme/pagarme-magento2-module)
-[![Total Downloads](https://poser.pugx.org/pagarme/pagarme-magento2-module/downloads)](https://packagist.org/packages/pagarme/pagarme-magento2-module)
+[![Latest Stable Version](https://poser.pugx.org/thiagobarradas/pagarme-magento2-module/v/stable)](https://packagist.org/packages/thiagobarradas/pagarme-magento2-module)
+[![Total Downloads](https://poser.pugx.org/thiagobarradas/pagarme-magento2-module/downloads)](https://packagist.org/packages/thiagobarradas/pagarme-magento2-module)
 
 # Magento2/PagarMe Integration module
 This is the official Magento2 module for PagarMe integration
@@ -16,20 +16,20 @@ Coming soon :construction:
 
 This module is now available through *Packagist*! You don't need to specify the repository anymore.
 
-[https://packagist.org/packages/pagarme/pagarme-magento2-module](https://packagist.org/packages/pagarme/pagarme-magento2-module)
+[https://packagist.org/packages/thiagobarradas/pagarme-magento2-module](https://packagist.org/packages/thiagobarradas/pagarme-magento2-module)
 
 Add the following lines into your composer.json 
 ```
 {
 	"require": {
-		"pagarme/pagarme-magento2-module":"^1.2"
+		"thiagobarradas/pagarme-magento2-module":"^1.2"
 	}
 }
 ```
 
 or simply digit 
 ```
-composer require pagarme/pagarme-magento2-module
+composer require thiagobarradas/pagarme-magento2-module
 ```
  
 Then type the following commands from your Magento root:
