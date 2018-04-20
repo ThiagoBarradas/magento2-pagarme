@@ -23,7 +23,7 @@ define(
         'use strict';
 
         return function (data, customer_id) {
-            var serviceUrl = 'https://api.pagarme.com/core/v1/customers/' + customer_id + '/cards';
+            var serviceUrl = 'https://api.mundipagg.com/core/v1/customers/' + customer_id + '/cards';
 
             return $.ajax({
                 method: "POST",

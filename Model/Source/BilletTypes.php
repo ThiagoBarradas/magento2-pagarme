@@ -18,13 +18,7 @@ class BilletTypes extends \Magento\Payment\Model\Source\Cctype
     public function getAllowedTypes()
     {
         return [
-            'Itau',
             'Bradesco',
-            'Santander',
-            'CitiBank',
-            'BancoDoBrasil',
-            'Caixa',
-            'Stone'
         ];
     }
 }

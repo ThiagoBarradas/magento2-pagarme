@@ -153,7 +153,7 @@ define(
                     $.ajax({
                         type: "GET",
                         dataType: "json",
-                        url: 'https://api.pagarme.com/bin/v1/' + cardNumber,
+                        url: 'https://api.mundipagg.com/bin/v1/' + cardNumber,
                         async: false,
                         cache: true,
                         success: function (data) {

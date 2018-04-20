@@ -83,23 +83,5 @@
 	    </field>
 	    <include path="PagarMe_PagarMe::system/transaction/creditcard/installments/visa.xml"/>
 	    <include path="PagarMe_PagarMe::system/transaction/creditcard/installments/mastercard.xml"/>
-	    <include path="PagarMe_PagarMe::system/transaction/creditcard/installments/amex.xml"/>
-	    <include path="PagarMe_PagarMe::system/transaction/creditcard/installments/hipercard.xml"/>
-	    <include path="PagarMe_PagarMe::system/transaction/creditcard/installments/diners.xml"/>
-	    <include path="PagarMe_PagarMe::system/transaction/creditcard/installments/elo.xml"/>
-	    <include path="PagarMe_PagarMe::system/transaction/creditcard/installments/discover.xml"/>
-	    <include path="PagarMe_PagarMe::system/transaction/creditcard/installments/aura.xml"/>
-	    <include path="PagarMe_PagarMe::system/transaction/creditcard/installments/jcb.xml"/>
-	    <include path="PagarMe_PagarMe::system/transaction/creditcard/installments/credz.xml"/>
-	    <include path="PagarMe_PagarMe::system/transaction/creditcard/installments/sodexoalimentacao.xml"/>
-	    <include path="PagarMe_PagarMe::system/transaction/creditcard/installments/sodexocultura.xml"/>
-	    <include path="PagarMe_PagarMe::system/transaction/creditcard/installments/sodexogift.xml"/>
-	    <include path="PagarMe_PagarMe::system/transaction/creditcard/installments/sodexopremium.xml"/>
-	    <include path="PagarMe_PagarMe::system/transaction/creditcard/installments/sodexorefeicao.xml"/>
-	    <include path="PagarMe_PagarMe::system/transaction/creditcard/installments/sodexocombustivel.xml"/>
-	    <include path="PagarMe_PagarMe::system/transaction/creditcard/installments/vr.xml"/>
-	    <include path="PagarMe_PagarMe::system/transaction/creditcard/installments/alelo.xml"/>
-	    <include path="PagarMe_PagarMe::system/transaction/creditcard/installments/banese.xml"/>
-	    <include path="PagarMe_PagarMe::system/transaction/creditcard/installments/cabal.xml"/>
 	</group>
 </include>

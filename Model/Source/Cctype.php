@@ -22,24 +22,6 @@ class Cctype extends \Magento\Payment\Model\Source\Cctype
         return [
 			'Visa',
 			'Mastercard',
-			'Amex',
-			'Hipercard',
-			'Diners',
-			'Elo',
-			'Discover',
-			'Aura',
-			'JCB',
-			'Credz',
-			'SodexoAlimentacao',
-			'SodexoCultura',
-			'SodexoGift',
-			'SodexoPremium',
-			'SodexoRefeicao',
-			'SodexoCombustivel',
-			'VR',
-			'Alelo',
-			'Banese',
-			'Cabal',
         ];
     }
 }
